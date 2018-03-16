@@ -1,0 +1,10 @@
+RSS - Received Signal Strength
+AoA - Angle of Arrival
+GNSS - Global Navigation Satellite Systems
+WSN - Wireless Sensor Network
+INS - Inertial Navigation Systems
+UWB - Ultra Wide Band
+2.4 GHz ISM band - The Industrial, scientific and medical radio bands
+
+Software:
+    nanoPAL RTLS Toolbox provided by Nanotron Technologies
