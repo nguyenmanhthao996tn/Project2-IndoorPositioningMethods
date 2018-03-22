@@ -1,0 +1,15 @@
+Scenario:
+    
+
+Lý do chọn HM-10, Quectel L70, MPU-6050? Ưu điểm, nhược điểm khi so sánh với những mô-đun khác cùng chức năng của hãng và các hãng khác trên thị trường? (Giá thành, năng lượng tiêu thụ, kích thước,...)
+
+Mô-đun HM-10 sử dụng MCU TI CC2541 (Bluetooth low energy and proprietary wireless MCU)
+
+Tầm hoạt động của mô-đun HM-10, phương pháp phủ sóng cho 1 khu vực
+
+Giải pháp truyền dữ liệu về Server
+
+Giải pháp cải thiện độ chính xác khi ước lượng độ dài bước chân
+
+Công suất của footsteps energy harvesting? Đủ công suất để cung cấp cho toàn bộ hệ thống
+
