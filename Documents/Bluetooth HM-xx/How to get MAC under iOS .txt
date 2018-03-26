@@ -1,0 +1,39 @@
+
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
+{
+        if(![self describeDictonary:advertisementData])
+        {
+            NSLog(@"is not HM module");
+            return;
+        }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+- (Boolean)describeDictonary: (NSDictionary *) dict
+{
+    NSArray *keys;
+    id key;
+    keys = [dict allKeys];
+    for(int i = 0; i < [keys count]; i++)
+    {
+        key = [keys objectAtIndex:i];
+        if([key isEqualToString:@"kCBAdvDataManufacturerData"])
+        {
+            NSData *tempValue = [dict objectForKey:key];
+            const Byte *tempByte = [tempValue bytes];
+            if([tempValue length] == 8 && tempByte[0] == 0x48 && tempByte[1] == 0x4D)
+            {
+                if(tempByte[2] == 0x00 && tempByte[3] == 0x0E && tempByte[4] == 0x0B)
+                { //is dual mode HM-12 HM-13 HM-14
+                    return true;
+                }else //is HM-10, HM-11, HM-15, HM-16, HM-17
+                    return true;
+            }
+        }else if([key isEqualToString:@"kCBAdvDataLocalName"])
+        {
+            //there is name
+            //NSString *szName = [dict objectForKey: key];
+        }
+    }
+    return false;
+}

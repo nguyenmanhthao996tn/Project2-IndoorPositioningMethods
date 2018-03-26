@@ -1,0 +1,23 @@
+1. MCU
+   HM-10/11 MCU is 8051 32MHz 8bit
+   HM-16/17 MCU is Cortex-M0 48MHz 32bit
+2. Bluetooth core version
+   HM-10/11 is BLE 4.0
+   HM-16/17 is BLE 4.1
+3. MTU Size
+   HM-10/11 MTU size always is 20Bytes
+   HM-16/17 Default MTU size is 256Bytes
+   HM-16/17 work with iOS MTU size 158Bytes(if iOS8 and higher), 135Bytes(if <iOS8)
+   HM-16/17 work with another HM-16/17 MTU size is 256Bytes
+   HM-16/17 work with HM-10/11 MTU size is 20Bytes
+   HM-16/17 work with android MTU size is 20Bytes (almost)
+4. Speed
+   HM-10/11 speed is about 2KB/seconds
+   HM-16/17 speed is about 3-8KB/seconds
+5. Power consumption
+   HM-10/11 in automatic sleep mode 50~400uA
+   HM-10/11 in active mode 8.5mA
+   HM-16/17 in automatic sleep mode 50~1200uA
+   HM-16/17 in active mode 6.5mA
+6. Size
+   HM-10/11 as same as HM-16/17
