@@ -1,0 +1,25 @@
+Linux Time Synchronization: https://www.lammertbies.nl/comm/info/GPS-time.html
+clock_gettime: https://linux.die.net/man/3/clock_gettime
+
+Different between CLOCK_REALTIME & CLOCK_MONOTONIC???
+
+Install NTP: sudo apt-get install ntp
+Disable systemd-timesyncd: 
+    # systemctl stop systemd-timesyncd
+    # systemctl disable systemd-timesyncd
+
+Install GPSd & config: https://www.youtube.com/watch?v=82z5JNsir6Y
+GPSD Time Service HOWTO: http://www.catb.org/gpsd/gpsd-time-service-howto.html#_ntp_with_gpsd
+
+RPi set timezone: sudo dpkg-reconfigure tzdata
+
+NTP Output Explain: http://tech.kulish.com/2007/10/30/ntp-ntpq-output-explained/
+----------------------------
+
+
+adhoc network
+
+ntpd vs chronyd (Both gpsd and ntpd are preinstalled in many stock Linux distributions; chronyd is normally not.)
+
+Garmin GPS 18x ($79.99): https://www.amazon.com/Garmin-18x-LVC-Navigator-Unit/dp/B0016O3T7A
+Garmin GPS 16x ($92.48): https://www.amazon.com/gp/offer-listing/B0016NYHSG/ref=olp_twister_child?ie=UTF8&mv_customer_package_type=0
