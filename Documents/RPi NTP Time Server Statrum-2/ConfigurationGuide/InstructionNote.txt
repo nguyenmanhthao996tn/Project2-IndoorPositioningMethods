@@ -1,10 +1,11 @@
 There are 2 ways to set up a Raspberry Pi NTP Time Server with a GPS Module:
 	- Raspberry Pi connects to GPS directly via GPIO
-	- Raspberry PI connects to GPS via a usb-to-serial port adapter (Can't receive PPS signal -> NOT used)
+	- Raspberry PI connects to GPS via a usb-to-serial port adapter (Can't receive PPS signal -> NOT used -> Explain more detail)
 
-Hardware
+Hardware:
+	Wiring up like picture HardwareSetupGPIO
 
-Software Setup (Reference: Quick start NTP on the Raspberry Pi - http://www.satsignal.eu/ntp/Raspberry-Pi-quickstart.html):
+Software Setup:
 	PPS Setup:
 		sudo raspi-config
 			1. Expand Filesystem 
@@ -124,3 +125,11 @@ Software Setup (Reference: Quick start NTP on the Raspberry Pi - http://www.sats
 			# Coarse time reference-clock - nearest second
 			server 127.127.28.0 minpoll 4 maxpoll 4 iburst prefer
 			fudge 127.127.28.0 time1 +0.105 flag1 1 refid GPSD stratum 1
+			
+			
+
+			
+Reference:
+	Quick start NTP on the Raspberry Pi - http://www.satsignal.eu/ntp/Raspberry-Pi-quickstart.html			
+	The Raspberry Pi as a Stratum-1 NTP Server - http://www.satsignal.eu/ntp/Raspberry-Pi-NTP.html
+	GPSD Time Service HOWTO - http://www.catb.org/gpsd/gpsd-time-service-howto.html
