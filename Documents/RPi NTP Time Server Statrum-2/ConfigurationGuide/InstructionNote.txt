@@ -1,0 +1,126 @@
+There are 2 ways to set up a Raspberry Pi NTP Time Server with a GPS Module:
+	- Raspberry Pi connects to GPS directly via GPIO
+	- Raspberry PI connects to GPS via a usb-to-serial port adapter (Can't receive PPS signal -> NOT used)
+
+Hardware
+
+Software Setup (Reference: Quick start NTP on the Raspberry Pi - http://www.satsignal.eu/ntp/Raspberry-Pi-quickstart.html):
+	PPS Setup:
+		sudo raspi-config
+			1. Expand Filesystem 
+			2. Advanced Options -> Disable Serial Shell (optional) 
+			Reboot
+
+		sudo apt-get update
+		sudo apt-get dist-upgrade
+		sudo rpi-update
+		sudo reboot
+		sudo apt-get install pps-tools
+		sudo apt-get install libcap-dev
+		sudo apt-get install libssl-dev - you may not need this
+		sudo dpkg-reconfigure tzdata - unless you want all times in UTC
+
+		sudo nano /boot/cmdline.txt – Add bcm2708.pps_gpio_pin=18 at the end of the line.
+		(if you have previously followed these instructions, remove the added text)
+
+		sudo nano /boot/config.txt - Add dtoverlay=pps-gpio,gpiopin=18 on a new line
+		Save and close 
+
+		sudo nano /etc/modules – Add pps-gpio on a new line, if it is not already present.
+		Save, close & reboot
+		
+	PPS verify:
+		dmesg | grep pps
+			Note that with the Raspberry Pi 2, or with more recent versions of Raspbian, you may see:
+				[ 10.172015] pps pps0: new PPS source pps-gpio.-1
+
+		sudo ppstest /dev/pps0
+		
+	NTP Setup:
+		wget http://archive.ntp.org/ntp4/ntp-4.2/ntp-4.2.8p11.tar.gz
+		tar zxvf ntp-4.2.8p11.tar.gz
+		cd ntp-4.2.8p11
+		./configure --enable-linuxcaps (Note that for Raspbian Jessie you should add "--enable-linuxcaps")
+		make
+		sudo make install
+		sudo service ntp stop
+		sudo cp /usr/local/bin/ntp* /usr/bin/ && sudo cp /usr/local/sbin/ntp* /usr/sbin/
+		sudo nano /etc/ntp.conf
+		
+	Enabling PPS/ATOM support in NTPD:
+		In editing /etc/ntp.conf, add these lines:
+			server 127.127.22.0 minpoll 4 maxpoll 4
+			fudge 127.127.22.0 refid PPS
+			
+		Amend this line to add a trailing "prefer":	
+			server 0.debian.pool.ntp.org iburst prefer
+			
+		sudo service ntp restart
+		After a few minutes run: ntpq –pn
+		
+	Solution to Raspberry Pi 3 UART & Bluetooth issue:
+		1. Update Raspberry Pi:
+			$ sudo apt-get update
+			$ sudo apt-get upgrade
+			$ sudo apt-get dist-upgrade
+			$ sudo rpi-update
+			
+		2. For versions of Jessie before 2016-Mar-18, add two lines at the end of /boot/config.txt
+			# Allow the normal UART pins to work
+			dtoverlay=pi3-disable-bt-overlay
+			
+		3. For versions of Jessie after 2016-Mar-18, add two lines at the end of /boot/config.txt
+			# Allow the normal UART pins to work
+			dtoverlay=pi3-miniuart-bt
+			
+		4. Stop the Bluetooth modem from trying to use the UART:
+			$ sudo systemctl disable hciuart
+			
+		5. If you have smsc95xx.turbo_mode=N in your /boot/cmdline.txt, remove it.
+		
+		6. Reboot your Raspberry Pi
+			$ sudo reboot
+		
+	Check if Raspberry Pi see gps module:
+		$ sudo apt-get install minicom
+		$ minicom -b 9600 -o -D /dev/ttyAMA0
+		
+	GPSD Setup:
+		$ sudo apt-get install gpsd gpsd-clients python-gps
+		Now try and start the gpsd service temporarily:
+			$ sudo gpsd /dev/ttyAMA0 -n -F /var/run/gpsd.sock
+			$ cgps -s
+			
+	Configuring gpsd to auto-start:
+		Made the following changes to /etc/default/gpsd:
+			# Default settings for the gpsd init script and the hotplug wrapper.
+
+			# Start the gpsd daemon automatically at boot time
+			START_DAEMON="true"
+
+			# Use USB hotplugging to add new USB devices automatically to the daemon
+			USBAUTO="false"
+
+			# Devices gpsd should collect to at boot time.
+			# They need to be read/writeable, either by user gpsd or the group dialout.
+			DEVICES="/dev/ttyAMA0"
+
+			# Other options you want to pass to gpsd
+			GPSD_OPTIONS="-n"
+			GPSD_SOCKET="/var/run/gpsd.sock"
+			
+		Stop systemd gpsd service:
+			$ sudo systemctl stop gpsd.socket
+			$ sudo systemctl disable gpsd.socket
+			
+		Set gpsd to start automatically:
+			$ sudo ln -s /lib/systemd/system/gpsd.service /etc/systemd/system/multi-user.target.wants/
+			
+		Restart GPSD service:
+			$ sudo service gpsd restart
+			
+	Link NTP to GPSD:
+		Add following lines to ntp.conf file:
+			# Coarse time reference-clock - nearest second
+			server 127.127.28.0 minpoll 4 maxpoll 4 iburst prefer
+			fudge 127.127.28.0 time1 +0.105 flag1 1 refid GPSD stratum 1
