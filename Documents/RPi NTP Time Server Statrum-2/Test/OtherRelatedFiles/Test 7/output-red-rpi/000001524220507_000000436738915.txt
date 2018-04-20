@@ -1,0 +1,78 @@
+Time: Fri Apr 20 10:35:07 2018
+      436738915ns | Data: 00
+
+Time: Fri Apr 20 10:35:08 2018
+      304635150ns | Data: 01
+
+Time: Fri Apr 20 10:35:09 2018
+      172538628ns | Data: 02
+
+Time: Fri Apr 20 10:35:10 2018
+      056812166ns | Data: 03
+
+Time: Fri Apr 20 10:35:10 2018
+      924715217ns | Data: 04
+
+Time: Fri Apr 20 10:35:11 2018
+      792625611ns | Data: 05
+
+Time: Fri Apr 20 10:35:12 2018
+      660529355ns | Data: 06
+
+Time: Fri Apr 20 10:35:13 2018
+      544800813ns | Data: 07
+
+Time: Fri Apr 20 10:35:14 2018
+      412702247ns | Data: 08
+
+Time: Fri Apr 20 10:35:15 2018
+      280603284ns | Data: 09
+
+Time: Fri Apr 20 10:35:16 2018
+      164879010ns | Data: 10
+
+Time: Fri Apr 20 10:35:17 2018
+      032783743ns | Data: 11
+
+Time: Fri Apr 20 10:35:17 2018
+      900681450ns | Data: 12
+
+Time: Fri Apr 20 10:35:18 2018
+      784960764ns | Data: 13
+
+Time: Fri Apr 20 10:35:19 2018
+      652863320ns | Data: 14
+
+Time: Fri Apr 20 10:35:20 2018
+      520760914ns | Data: 15
+
+Time: Fri Apr 20 10:35:21 2018
+      405039288ns | Data: 16
+
+Time: Fri Apr 20 10:35:22 2018
+      272934977ns | Data: 17
+
+Time: Fri Apr 20 10:35:23 2018
+      140831677ns | Data: 18
+
+Time: Fri Apr 20 10:35:24 2018
+      025090007ns | Data: 19
+
+Time: Fri Apr 20 10:35:24 2018
+      892984445ns | Data: 20
+
+Time: Fri Apr 20 10:35:25 2018
+      760880207ns | Data: 21
+
+Time: Fri Apr 20 10:35:26 2018
+      645147131ns | Data: 22
+
+Time: Fri Apr 20 10:35:27 2018
+      513050650ns | Data: 23
+
+Time: Fri Apr 20 10:35:28 2018
+      380949458ns | Data: 24
+
+Time: Fri Apr 20 10:35:29 2018
+      248834230ns | Data: 25
+
