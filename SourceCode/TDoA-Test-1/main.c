@@ -24,7 +24,7 @@
 #define MODEMDEVICE "/dev/ttyUSB0"
 #define _POSIX_SOURCE 1 /* POSIX compliant source */
 
-#define MAX_DATA_RECEIVE_PACKAGE_COUNTER 25
+#define MAX_DATA_RECEIVE_PACKAGE_COUNTER 26
 #define MAX_BYTE_EACH_PACKAGE 5
 
 /********************* GLOBAL VARIABLES *********************/
