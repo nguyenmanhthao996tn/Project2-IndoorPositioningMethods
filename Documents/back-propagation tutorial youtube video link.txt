@@ -1,0 +1,6 @@
+Neural network tutorial: The back-propagation algorithm
+	- Part 1: https://www.youtube.com/watch?v=aVId8KMsdUU
+	- Part 2: https://www.youtube.com/watch?v=zpykfC4VnpM
+	
+Neural Network - Back-Propagation Tutorial In C#
+	https://www.youtube.com/watch?v=L_PByyJ9g-I
