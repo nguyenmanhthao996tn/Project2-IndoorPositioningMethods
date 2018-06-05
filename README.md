@@ -1,2 +1,2 @@
-# -KLTN-TrackingDeviceForDementiaPatients
-A tracking device in shoes for dementia patients using IMU Sensors, BLE tags and GPS sensor.
+# IndoorPositioningMethods
+A thesis for Bachelor Degree that research & implement some indoor positioning methods such as TDoA, RTToF, RSSI, Beacon,...
